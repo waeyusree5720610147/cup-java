@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <div th:replace="ingredient/global :: head_styles"></div>
+    <div th:replace="ingredient/global :: head_scripts"></div>
+    <title>partner</title>
+</head>
+<body>
+<div th:replace="ingredient/header :: header"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="ingredient/sidebar :: sidebar"></div>
+        <div class="col-sm-9 col-md-10 mt-3">
+            <h1>
+                P a r t n e r
+            </h1>
+            <a href="/admin/partner/add">
+                <button type="button" class="btn button-add"> เพิ่ม </button>
+            </a>
+            <div class="alert alert-success" role="alert" th:if="${successMassage != null}" th:text="${successMassage}">
+            </div>
+            <table class="table table-striped mt-2">
+                <thead>
+                <tr class="bg-cupcode">
+                    <th scope="col">#</th>
+                    <th scope="col">Company</th>
+                    <th scope="col">Link</th>
+                    <th scope="col" class="text-center">Logo</th>
+                    <th class="text-center">*****</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="partner : ${partner}">
+                    <th scope="row" th:text="${partner.id}"></th>
+                    <td th:text="${partner.nameCompanyPartner}"></td>
+                    <td ><a th:href="@{http://} + ${partner.linkPartner}" th:text="${partner.linkPartner}" target="_blank"></a></td>
+                    <!--<td th:text="${partner.logoPartner}"></td>-->
+                    <td ><img class="rounded mx-auto d-block" width="50px" th:src="@{${partner.logoPartner}}"/></td>
+                    <td>
+                        <div class="text-center">
+                            <a th:href="@{/admin/partner/edit/} + ${partner.id}" ><button type="button" class="btn btn-warning">แก้ไข</button></a>
+                            <a th:href="@{/admin/partner/delete/} + ${partner.id}" onclick="return confirm('Are you sure?')"><button type="button" class="btn btn-danger" >ลบ</button></a>
+                        </div>
+                    </td>
+                </tr>
+
+                <!--<tr>-->
+                    <!--<td><img width="200px" th:src="@{\New\y4-01.jpg}"/></td>-->
+                <!--</tr>-->
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

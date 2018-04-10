@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <div th:replace="ingredient/global :: head_styles"></div>
+    <div th:replace="ingredient/global :: head_scripts"></div>
+    <title>addService</title>
+</head>
+<body>
+<div th:replace="ingredient/header :: header"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="ingredient/sidebar :: sidebar"></div>
+        <div class="col-sm-9 col-md-10 mt-3">
+            <h1 th:text="${keywords} ? 'A d d s e r v i c e' : 'E d i t s e r v i c e' "></h1>
+
+            <form th:object="${service}" th:action="@{/admin/service/save}" method="post" enctype="multipart/form-data">
+                <input type="hidden" th:field="*{id}">
+                <div class="form-group row">
+                    <label  class="col-sm-2 col-form-label">Service Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" th:field="*{nameService}" class="form-control" placeholder="Service Name" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Detail-Short</label>
+                    <div class="col-sm-10">
+                        <input type="text" th:field="*{detailShort}" class="form-control" placeholder="Detail-Short" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Detail-Long</label>
+                    <div class="col-sm-10">
+                        <textarea th:field="*{detailLong}" class="form-control" rows="4" placeholder="Detail-Long" required></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Icon Service</label>
+                    <div class="col-sm-10">
+                        <img  width="100px" th:src="@{*{iconService}}"/>
+                        <!--ทำช่องว่างเพื่อความสวยงาม-->
+                        <br th:if="${keywords} == false">
+                        <br th:if="${keywords} == false">
+                        <input type="file" name="file">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-10">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

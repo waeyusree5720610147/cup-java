@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <div th:replace="ingredient/global :: head_styles"></div>
+    <div th:replace="ingredient/global :: head_scripts"></div>
+    <title>addPartner</title>
+</head>
+<body>
+<div th:replace="ingredient/header :: header"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="ingredient/sidebar :: sidebar"></div>
+        <div class="col-sm-9 col-md-10 mt-3">
+            <h1 th:text="${keywords} ? 'A d d p a r t n e r' : 'E d i t p a r t n e r'"></h1>
+            <!--<form method="POST" enctype="multipart/form-data" th:action="@{/admin/partner/save}">-->
+                <!--<table>-->
+                    <!--<tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>-->
+                    <!--<tr><td></td><td><input type="submit" value="Upload" /></td></tr>-->
+                <!--</table>-->
+            <!--</form>-->
+
+            <form th:object="${partner}" th:action="@{/admin/partner/save}" method="post" enctype="multipart/form-data">
+                <input type="hidden" th:field="*{id}">
+                <div class="form-group row">
+                    <label  class="col-sm-2 col-form-label">Company Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" th:field="*{nameCompanyPartner}" class="form-control" placeholder="Company Name" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Link</label>
+                    <div class="col-sm-10">
+                        <input type="text" th:field="*{linkPartner}" class="form-control" placeholder="Link" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Logo</label>
+                    <div class="col-sm-10">
+                        <!--<input type="text" th:field="*{logoPartner}" class="form-control" placeholder="Pathlogo" required>-->
+                        <img  width="100px" th:src="@{*{logoPartner}}"/>
+                                <!--ทำช่องว่างเพื่อความสวยงาม-->
+                            <br th:if="${keywords} == false">
+                            <br th:if="${keywords} == false">
+                        <input type="file" name="file">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-10">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
