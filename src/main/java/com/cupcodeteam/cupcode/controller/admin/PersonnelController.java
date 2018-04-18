@@ -110,16 +110,16 @@ public class PersonnelController {
         return "redirect:/admin/personnel";
     }
 
-    @RequestMapping("/personnel/description/{id}")
+    @RequestMapping("/personnel/description")
     public String descriptionPersonnel(
             Model model,
-            @PathVariable int id
+            @RequestParam(value = "id", required = true) int id
     ){
         Personnel personnel;
         personnel = this.personnelRepository.findOneById(id);
         model.addAttribute("personnel", personnel);
-        model.addAttribute("keywords", false);
-        return null;
+//        model.addAttribute("keywords", false);
+        return "personnel_profile.html";
     }
 
 }
