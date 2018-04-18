@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <div th:replace="ingredient/global :: head_styles"></div>
+    <div th:replace="ingredient/global :: head_scripts"></div>
+    <title>addPersonnel</title>
+</head>
+<body>
+<div th:replace="ingredient/header :: header"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="ingredient/sidebar :: sidebar"></div>
+        <div class="col-sm-9 col-md-10 mt-3">
+            <h1 th:text="${keywords} ? 'A d d p e r s o n n e l' : 'E d i t p e r s o n n e l' "></h1>
+
+            <form th:object="${personnel}" th:action="@{/admin/personnel/save}" method="post" enctype="multipart/form-data">
+                <input type="hidden" th:field="*{id}">
+                <div class="form-group row">
+                    <label  class="col-sm-2 col-form-label">FullName</label>
+                    <div class="col-sm-10">
+                        <input type="text" th:field="*{name_sername}" class="form-control" placeholder="FullName" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">NickName</label>
+                    <div class="col-sm-10">
+                        <input type="text" th:field="*{nickname}" class="form-control" placeholder="NickName" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Position</label>
+                    <div class="col-sm-10">
+                        <input type="text" th:field="*{position}" class="form-control" placeholder="Position" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">BirthDay</label>
+                    <div class="col-sm-10">
+                        <input type="date" th:field="*{birthday}" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Image</label>
+                    <div class="col-sm-10">
+                        <img  width="100px" th:src="@{*{image}}"/>
+                        <!--ทำช่องว่างเพื่อความสวยงาม-->
+                        <br th:if="${keywords} == false">
+                        <br th:if="${keywords} == false">
+                        <input type="file" name="file" th:required="${keywords} == true">
+                    </div>
+                </div>
+                <!--<div class="form-group row">-->
+                    <!--<label class="col-sm-2 col-form-label">Image</label>-->
+                    <!--<div class="col-sm-10">-->
+                        <!--<input type="text" th:field="*{image}" class="form-control" placeholder="image" required>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Tell</label>
+                    <div class="col-sm-10">
+                        <input type="text" th:field="*{tell}" class="form-control" placeholder="Tell" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10">
+                        <input type="email" th:field="*{email_per}" class="form-control" placeholder="Email" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Facebook</label>
+                    <div class="col-sm-10">
+                        <input type="text" th:field="*{facebook}" class="form-control" placeholder="Facebook" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Line</label>
+                    <div class="col-sm-10">
+                        <input type="text" th:field="*{line}" class="form-control" placeholder="Line" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Twitter</label>
+                    <div class="col-sm-10">
+                        <input type="text" th:field="*{twitter}" class="form-control" placeholder="Twitter" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Instagram</label>
+                    <div class="col-sm-10">
+                        <input type="text" th:field="*{instagram}" class="form-control" placeholder="Instagram" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-10">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

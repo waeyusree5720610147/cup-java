@@ -14,6 +14,99 @@
             <h1>
                 P e r s o n n e l
             </h1>
+            <a href="/admin/personnel/add">
+                <button type="button" class="btn button-add"> เพิ่ม </button>
+            </a>
+            <div class="alert alert-success alert-dismissible fade show" role="alert" th:if="${successMassage != null}">
+                <strong th:text="${successMassage}"></strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <table class="table table-striped mt-2">
+                <thead>
+                <tr class="bg-cupcode">
+                    <th scope="col">#</th>
+                    <th scope="col">Fullname</th>
+                    <th scope="col">Nickname</th>
+                    <th scope="col">Position</th>
+                    <th scope="col">BirthDay</th>
+                    <th scope="col" class="text-center">Image</th>
+                    <!--<th scope="col">Tell</th>-->
+                    <!--<th scope="col">Email</th>-->
+                    <!--<th scope="col">Facebook</th>-->
+                    <!--<th scope="col">Line</th>-->
+                    <!--<th scope="col">Twitter</th>-->
+                    <!--<th scope="col">Instagram</th>-->
+                    <th class="text-center">*****</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="personnel : ${personnel}">
+                    <th scope="row" th:text="${personnel.id}"></th>
+                    <td th:text="${personnel.name_sername}"></td>
+                    <td th:text="${personnel.nickname}"></td>
+                    <td th:text="${personnel.position}"></td>
+                    <td th:text="${personnel.birthday}"></td>
+                    <!--<td ><a th:href="@{http://} + ${customer.linkCustomer}" th:text="${customer.linkCustomer}" target="_blank"></a></td>-->
+                    <td ><img class="rounded mx-auto d-block" width="50px" th:src="@{${personnel.image}}"/></td>
+
+                    <!--<td th:text="${personnel.tell}"></td>-->
+                    <!--<td th:text="${personnel.email_per}"></td>-->
+
+                    <!--<td ><a th:href="@{http://www.facebook.com/} + ${personnel.facebook}" th:text="${personnel.facebook}" target="_blank"></a></td>-->
+                    <!--<td ><a th:href="@{http://} + ${personnel.line}" th:text="${personnel.line}" target="_blank"></a></td>-->
+                    <!--<td ><a th:href="@{https://twitter.com/} + ${personnel.twitter}" th:text="${personnel.twitter}" target="_blank"></a></td>-->
+                    <!--<td ><a th:href="@{https://www.instagram.com/} + ${personnel.instagram}" th:text="${personnel.instagram}" target="_blank"></a></td>-->
+
+                    <!--<td th:text="${personnel.facebook}"></td>-->
+                    <!--<td th:text="${personnel.line}"></td>-->
+                    <!--<td th:text="${personnel.twitter}"></td>-->
+                    <!--<td th:text="${personnel.instagram}"></td>-->
+
+                    <td>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">ดูรายละเอียด</button>
+                            <a th:href="@{/admin/personnel/edit/} + ${personnel.id}" ><button type="button" class="btn btn-warning">แก้ไข</button></a>
+                            <a th:href="@{/admin/personnel/delete/} + ${personnel.id}" onclick="return confirm('Are you sure?')"><button type="button" class="btn btn-danger" >ลบ</button></a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <!-- The Modal -->
+            <div class="modal fade" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header bg-cupcode">
+                            <h4 class="modal-title">Profile</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div class="card mx-auto border border-left-0 border-right-0 border-top-0 border-bottom-0" style="width: 18rem;">
+                                <img class="card-img-top" src="\Cupcode\3.png" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer bg-cupcode">
+                            <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

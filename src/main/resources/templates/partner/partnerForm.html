@@ -43,7 +43,7 @@
                                 <!--ทำช่องว่างเพื่อความสวยงาม-->
                             <br th:if="${keywords} == false">
                             <br th:if="${keywords} == false">
-                        <input type="file" name="file">
+                        <input type="file" name="file" th:required="${keywords} == true">
                     </div>
                 </div>
                 <div class="form-group row">

@@ -18,7 +18,11 @@
             <a href="/admin/service/add">
                 <button type="button" class="btn button-add"> เพิ่ม </button>
             </a>
-            <div class="alert alert-success" role="alert" th:if="${successMassage != null}" th:text="${successMassage}">
+            <div class="alert alert-success alert-dismissible fade show" role="alert" th:if="${successMassage != null}">
+                <strong th:text="${successMassage}"></strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <table class="table table-striped mt-2">
                 <thead>
