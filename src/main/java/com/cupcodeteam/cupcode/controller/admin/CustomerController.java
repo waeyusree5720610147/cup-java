@@ -33,6 +33,7 @@ public class CustomerController {
         List<Customer> Customer;
         Customer = this.customerRepository.findAll();
         model.addAttribute("customer", Customer);
+        model.addAttribute("page_active","customer");
 
         return "customer/customer";
     }
@@ -41,6 +42,8 @@ public class CustomerController {
     public String addCustomer(Model model){
         model.addAttribute("customer", new Customer());
         model.addAttribute("keywords", true);
+        model.addAttribute("page_active","customer");
+
         return "customer/customerForm";
     }
 
@@ -91,7 +94,9 @@ public class CustomerController {
         customer = this.customerRepository.findOneById(id);
         model.addAttribute("customer", customer);
         model.addAttribute("keywords", false);
+        model.addAttribute("page_active","customer");
 //        model.addAttribute("customer", customerRepository.findById(id));
+
         return "customer/customerForm";
     }
 

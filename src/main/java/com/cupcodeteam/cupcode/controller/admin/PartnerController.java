@@ -33,6 +33,8 @@ public class PartnerController {
         List<Partner> Partner;
         Partner = this.partnerRepository.findAll();
         model.addAttribute("partner", Partner);
+        model.addAttribute("page_active","partner");
+
         return "partner/partner";
     }
 
@@ -40,6 +42,8 @@ public class PartnerController {
     public String addPartner(Model model){
         model.addAttribute("partner", new Partner());
         model.addAttribute("keywords", true);
+        model.addAttribute("page_active","partner");
+
         return "partner/partnerForm";
     }
 
@@ -93,6 +97,8 @@ public class PartnerController {
         Partner = this.partnerRepository.findOneById(id);
         model.addAttribute("partner", Partner);
         model.addAttribute("keywords", false);
+        model.addAttribute("page_active","partner");
+
         return "partner/partnerForm";
     }
 

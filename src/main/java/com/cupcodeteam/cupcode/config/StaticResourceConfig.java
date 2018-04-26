@@ -21,6 +21,9 @@ public class StaticResourceConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/static/**")
                 .addResourceLocations("classpath:static/");
 
+        registry.addResourceHandler("/images/**")
+                .addResourceLocations("classpath:images/");
+
         registry.addResourceHandler("Cupcode/**")
                 .addResourceLocations("file:" + this.path +"/");
     }

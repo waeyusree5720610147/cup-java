@@ -10,9 +10,10 @@
 <div class="container-fluid">
     <div class="row">
         <div th:replace="ingredient/sidebar :: sidebar"></div>
+        <div class="col-sm-3 col-md-2"></div>
         <div class="col-sm-9 col-md-10 mt-3">
             <h1>
-                P e r s o n n e l
+                Personnel
             </h1>
             <a href="/admin/personnel/add">
                 <button type="button" class="btn button-add"> เพิ่ม </button>
@@ -30,7 +31,7 @@
                     <th scope="col">Fullname</th>
                     <th scope="col">Nickname</th>
                     <th scope="col">Position</th>
-                    <th scope="col">BirthDay</th>
+                    <!--<th scope="col">BirthDay</th>-->
                     <th scope="col" class="text-center">Image</th>
                     <!--<th scope="col">Tell</th>-->
                     <!--<th scope="col">Email</th>-->
@@ -47,7 +48,7 @@
                     <td th:text="${personnel.name_sername}"></td>
                     <td th:text="${personnel.nickname}"></td>
                     <td th:text="${personnel.position}"></td>
-                    <td th:text="${personnel.birthday}"></td>
+                    <!--<td th:text="${personnel.birthday}"></td>-->
                     <!--<td ><a th:href="@{http://} + ${customer.linkCustomer}" th:text="${customer.linkCustomer}" target="_blank"></a></td>-->
                     <td ><img class="rounded mx-auto d-block" width="50px" th:src="@{${personnel.image}}"/></td>
 
@@ -82,12 +83,61 @@
 
                         <!-- Modal Header -->
                         <div class="modal-header bg-cupcode">
-                            <h4 class="modal-title">Profile</h4>
+                            <h4 class="modal-title text-white">Profile</h4>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
 
                         <!-- Modal body -->
-                        <div class="modal-body" id="detail"></div>
+                        <div class="modal-body" >
+                            <div class="card mx-auto border border-left-0 border-right-0 border-top-0 border-bottom-0" style="width: 20rem;">
+                                <img class="card-img-top"  id="img" alt="Card image cap">
+                                <div class="card-body  mx-auto">
+                                    <table>
+                                        <tr>
+                                            <td class="float-right font-weight-bold">FullName :&nbsp;</td>
+                                            <td><p class="card-text" id="fullname"></p></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="float-right font-weight-bold">NickName :&nbsp;</td>
+                                            <td><p class="card-text" id="nickname"></p></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="float-right font-weight-bold">Birthday :&nbsp;</td>
+                                            <td><p class="card-text" id="birthday"></p></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="float-right font-weight-bold">Position :&nbsp;</td>
+                                            <td><p class="card-text" id="position"></p></td>
+                                        </tr>
+                                        <tr><td><br/></td></tr>
+                                        <tr>
+                                            <td class="float-right"><i class="fa fa-phone-square" style="font-size:30px;color:#ff9933;"></i>&nbsp;</td>
+                                            <td><p class="card-text" id="tell"></p></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="float-right"><i class="fa fa-envelope" style="font-size:26px;color:#ff9933;"></i>&nbsp;</td>
+                                            <td><p class="card-text" id="email"></p></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="float-right"><i class="fa fa-facebook-square" style="font-size:30px;color:#ff9933;"></i>&nbsp;</td>
+                                            <td><a id="linkfacebook" target="_blank"></a></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="float-right"><i class="fa fa-weixin" style="font-size:30px;color:#ff9933;"></i>&nbsp;</td>
+                                            <td><a id="linkline" target="_blank"></a></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="float-right"><i class="fa fa-twitter-square" style="font-size:30px;color:#ff9933;"></i>&nbsp;</td>
+                                            <td><a id="linktwitter" target="_blank"></a></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="float-right"><i class="fa fa-instagram" style="font-size:30px;color:#ff9933;"></i>&nbsp;</td>
+                                            <td><a id="linkinstagram" target="_blank"></a></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
 
                         <!-- Modal footer -->
                         <div class="modal-footer bg-cupcode">
@@ -110,18 +160,51 @@
             var user_id = $(this).attr("id");
             <!--alert(user_id);-->
 
+                     <!-- ///Past/// -->
+            <!--$.ajax({-->
+                <!--url:"/admin/personnel/description",-->
+                <!--method:"post",-->
+                <!--data:{id:user_id},-->
+                <!--success:function(data){-->
+                    <!--$('#detail').html(data);-->
+                    <!--$('#myModal').modal('show');-->
+                <!--}-->
+            <!--});-->
+
+                     <!-- ///fail/// -->
             $.ajax({
-                <!--url:"../../../java/com/cupcodeteam/cupcde/controller/admin/personnelController.java",-->
                 url:"/admin/personnel/description",
                 method:"post",
                 data:{id:user_id},
                 success:function(data){
-                    alert(data);
-                    $('#detail').html(data);
-                    <!--$('#myModal').modal('show');-->
+                    $('#img').attr("src", data.image);
+                    $('#fullname').text(data.name_sername);
+                    $('#nickname').text(data.nickname);
+                    $('#birthday').text(data.birthday);
+                    $('#position').text(data.position);
+                    $('#tell').text(data.tell);
+                    $('#email').text(data.email_per);
+                    $('#linkfacebook').attr("href", "http://www.facebook.com/" + data.facebook);
+                    $('#linkfacebook').text(data.facebook);
+                    $('#linkline').attr("href", "http://" + data.line);
+                    $('#linkline').text(data.line);
+                    $('#linktwitter').attr("href", "http://twitter.com/" + data.twitter);
+                    $('#linktwitter').text(data.twitter);
+                    $('#linkinstagram').attr("href", "http://www.instagram.com/" + data.instagram);
+                    $('#linkinstagram').text(data.instagram);
+
+
+                    $('#myModal').modal('show');
                 }
             });
+
+            <!--.then(function(data) {-->
+                <!--&lt;!&ndash;alert(data);&ndash;&gt;-->
+            <!--});-->
+
         });
     });
 </script>
 </html>
+
+

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--<title>personnel</title>-->
+</head>
+<body>
+
+<div class="card mx-auto border border-left-0 border-right-0 border-top-0 border-bottom-0" style="width: 20rem;" th:object="${personnel}">
+    <img class="card-img-top" th:src="@{*{image}}" alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title" th:text="'FullName : ' + *{name_sername}"></h5>
+        <p class="card-text" th:text="'NickName : ' + *{nickname}"></p>
+        <p class="card-text" th:text="'Birthday : ' + *{birthday}"></p>
+        <p class="card-text" th:text="'Position : ' + *{position}"></p>
+        <p class="card-text" th:text="'Tell     : ' + *{tell}"></p>
+        <p class="card-text" th:text="'Email    : ' + *{email_per}"></p>
+        <p class="card-text" >Facebook : <a th:href="@{http://www.facebook.com/} + *{facebook}" th:text="*{facebook}" target="_blank"></a></p>
+        <p class="card-text" >Line :     <a th:href="@{http://} + *{line}" th:text="*{line}" target="_blank"></a></p>
+        <p class="card-text" >Twitter :  <a th:href="@{https://twitter.com/} + *{twitter}" th:text="*{twitter}" target="_blank"></a></p>
+        <p class="card-text" >Instagram : <a th:href="@{https://c} + *{instagram}" th:text="*{instagram}" target="_blank"></a></p>
+        <!--<p class="card-text" th:text="'Facebook : ' + *{facebook}"></p>-->
+        <!--<p class="card-text" th:text="'Line     : ' + *{line}"></p>-->
+        <!--<p class="card-text" th:text="'Twitter  : ' + *{twitter}"></p>-->
+        <!--<p class="card-text" th:text="'Instagram: ' + *{instagram}"></p>-->
+        <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+    </div>
+</div>
+<!--<td ><a th:href="@{http://www.facebook.com/} + ${personnel.facebook}" th:text="${personnel.facebook}" target="_blank"></a></td>-->
+<!--<td ><a th:href="@{http://} + ${personnel.line}" th:text="${personnel.line}" target="_blank"></a></td>-->
+<!--<td ><a th:href="@{https://twitter.com/} + ${personnel.twitter}" th:text="${personnel.twitter}" target="_blank"></a></td>-->
+<!--<td ><a th:href="@{https://www.instagram.com/} + ${personnel.instagram}" th:text="${personnel.instagram}" target="_blank"></a></td>-->
+
+</body>
+</html>

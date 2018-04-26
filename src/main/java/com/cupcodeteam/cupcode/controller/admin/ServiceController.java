@@ -33,6 +33,8 @@ public class ServiceController {
         List<Service> Service;
         Service = this.serviceRepository.findAll();
         model.addAttribute("service", Service);
+        model.addAttribute("page_active","service");
+
         return "service/service";
     }
 
@@ -40,6 +42,8 @@ public class ServiceController {
     public String addService(Model model){
         model.addAttribute("service", new Service());
         model.addAttribute("keywords", true);
+        model.addAttribute("page_active","service");
+
         return "service/serviceForm";
     }
 
@@ -91,6 +95,8 @@ public class ServiceController {
         service = this.serviceRepository.findOneById(id);
         model.addAttribute("service", service);
         model.addAttribute("keywords", false);
+        model.addAttribute("page_active","service");
+
         return "service/serviceForm";
     }
 

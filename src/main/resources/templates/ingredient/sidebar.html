@@ -5,25 +5,26 @@
     <title>cupcode</title>
 </head>
 <body>
-    <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar bg-light mt-3" th:fragment="sidebar">
-        <ul class="nav nav-pills flex-column">
+        <!--class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar"-->
+    <nav class="bg-cupcode position-fixed h-100 z-index" th:fragment="sidebar">
+        <ul class="nav nav-pills flex-column  margin-sidebar">
             <!--<li class="nav-item">-->
                 <!--<a class="nav-link active" href="#">Overview <span class="sr-only">(current)</span></a>-->
             <!--</li>-->
             <li class="nav-item">
-                <a class="nav-link" href="/admin/personnel">personnel</a>
+                <a class="nav-link link-sidebar" href="/admin/personnel" th:classappend="${page_active == 'personnel'}? 'active'">personnel</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/admin/customer">customer</a>
+                <a class="nav-link link-sidebar" href="/admin/customer" th:classappend="${page_active == 'customer'}? 'active'">customer</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/admin/partner">partner</a>
+                <a class="nav-link link-sidebar" href="/admin/partner" th:classappend="${page_active == 'partner'}? 'active'">partner</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/admin/service">service</a>
+                <a class="nav-link link-sidebar" href="/admin/service" th:classappend="${page_active == 'service'}? 'active'">service</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/admin/product">product</a>
+                <a class="nav-link link-sidebar" href="/admin/product" th:classappend="${page_active == 'product'}? 'active'">product</a>
             </li>
         </ul>
     </nav>

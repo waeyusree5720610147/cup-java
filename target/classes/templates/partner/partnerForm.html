@@ -11,8 +11,9 @@
 <div class="container-fluid">
     <div class="row">
         <div th:replace="ingredient/sidebar :: sidebar"></div>
+        <div class="col-sm-3 col-md-2"></div>
         <div class="col-sm-9 col-md-10 mt-3">
-            <h1 th:text="${keywords} ? 'A d d p a r t n e r' : 'E d i t p a r t n e r'"></h1>
+            <h1 class="title-form" th:text="${keywords} ? 'Add Partner' : 'Edit Partner'"></h1>
             <!--<form method="POST" enctype="multipart/form-data" th:action="@{/admin/partner/save}">-->
                 <!--<table>-->
                     <!--<tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>-->

@@ -2,18 +2,18 @@ package com.cupcodeteam.cupcode.controller.admin;
 
 import com.cupcodeteam.cupcode.entity.Pathimage;
 import com.cupcodeteam.cupcode.entity.Personnel;
+import com.cupcodeteam.cupcode.helper.JsonViews;
 import com.cupcodeteam.cupcode.repository.PersonnelRepository;
 import com.cupcodeteam.cupcode.service.FileUploadService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -33,6 +33,8 @@ public class PersonnelController {
         List<Personnel> personnel;
         personnel = this.personnelRepository.findAll();
         model.addAttribute("personnel", personnel);
+        model.addAttribute("page_active","personnel");
+
         return "personnel/personnel";
     }
 
@@ -40,6 +42,8 @@ public class PersonnelController {
     public String addPersonnel(Model model){
         model.addAttribute("personnel", new Personnel());
         model.addAttribute("keywords", true);
+        model.addAttribute("page_active","personnel");
+
         return "personnel/personnelForm";
     }
 
@@ -99,6 +103,8 @@ public class PersonnelController {
         personnel = this.personnelRepository.findOneById(id);
         model.addAttribute("personnel", personnel);
         model.addAttribute("keywords", false);
+        model.addAttribute("page_active","personnel");
+
         return "personnel/personnelForm";
     }
 
@@ -111,15 +117,27 @@ public class PersonnelController {
     }
 
     @RequestMapping("/personnel/description")
-    public String descriptionPersonnel(
-            Model model,
+    public @ResponseBody Personnel descriptionPersonnel(
+//            Model model,
             @RequestParam(value = "id", required = true) int id
     ){
+//        ObjectMapper mapper = new ObjectMapper();
         Personnel personnel;
         personnel = this.personnelRepository.findOneById(id);
-        model.addAttribute("personnel", personnel);
+        return personnel;
+//        try{
+//            String normalView = mapper.writerWithView(JsonViews.Normal.class).writeValueAsString(personnel);
+//            System.out.println("DDDDDDD = " + normalView);
+
+//        }catch (IOException e) {
+//            e.printStackTrace();
+//            return null;
+//        }
+
+//        model.addAttribute("personnel", personnel);
 //        model.addAttribute("keywords", false);
-        return "personnel_profile.html";
+//        return "personnel/personnel_profile";
+
     }
 
 }

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <div th:replace="ingredient/global :: head_styles"></div>
+    <div th:replace="ingredient/global :: head_scripts"></div>
+    <title>addProductImage</title>
+</head>
+<body>
+<div th:replace="ingredient/header :: header"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="ingredient/sidebar :: sidebar"></div>
+        <div class="col-sm-3 col-md-2"></div>
+        <div class="col-sm-9 col-md-10 mt-3">
+            <h1 class="title-form" th:text="${keywords} ? 'Add ProductImage' : 'Edit ProductImage'"></h1>
+
+            <form th:object="${productImage}" th:action="@{/admin/productImage/save}" method="post" enctype="multipart/form-data" ng-controller="MyCtrl">
+                <input type="text"  th:name="products_id" th:value="${id}">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Product Image</label>
+                    <div class="col-sm-10">
+                        <input type="file" name="file" multiple>
+                    </div>
+                </div>
+
+
+                <!--<div class="form-group row">-->
+                <!--<label class="col-sm-2 col-form-label">Product Image</label>-->
+                <!--<div class="col-sm-10">-->
+                <!--<div class="list list-inset">-->
+                <!--<div class="item-input" ng-repeat="input in inputs">-->
+                <!--<button class="btn btn-success" ng-if="$index == inputs.length - 1"-->
+                <!--ng-click="addInput()">-->
+                <!--<i class="fa fa-plus"></i>-->
+                <!--</button>-->
+                <!--<button class="btn btn-danger" ng-if="$index != inputs.length - 1"-->
+                <!--ng-click="removeInput($index)">-->
+                <!--<i class="	fa fa-minus"></i>-->
+                <!--</button>-->
+                <!--<input type="file" name="file" th:required="${keywords} == true"/>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-10">
+                        <a th:href="@{/admin/product}">
+                            <button type="reset" class="btn btn-danger">Cancel</button>
+                        </a>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+
+<!--<script>-->
+    <!--var app = angular.module('myApp', []);-->
+    <!--app.controller("MyCtrl", function ($scope) {-->
+        <!--$scope.inputs = [{-->
+            <!--value: null-->
+        <!--}];-->
+
+        <!--$scope.addInput = function () {-->
+            <!--console.log("new input");-->
+            <!--$scope.inputs.push({-->
+                <!--value: null-->
+            <!--});-->
+        <!--}-->
+
+        <!--$scope.removeInput = function (index) {-->
+            <!--$scope.inputs.splice(index, 1);-->
+        <!--}-->
+    <!--});-->
+
+
+<!--</script>-->
+
+</html>

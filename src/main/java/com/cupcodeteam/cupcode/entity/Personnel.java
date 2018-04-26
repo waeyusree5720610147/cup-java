@@ -1,5 +1,7 @@
 package com.cupcodeteam.cupcode.entity;
 
+import com.cupcodeteam.cupcode.helper.JsonViews;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
@@ -12,19 +14,41 @@ import java.util.Date;
 @Table(name = "personnel")
 public class Personnel {
     private Integer id;
+
+//    @JsonView(JsonViews.Normal.class)
     private String name_sername;
+
+//    @JsonView(JsonViews.Normal.class)
     private String nickname;
 //    @CreatedDate
 //    @Temporal(TemporalType.DATE)
 //    private Date birthday;
+
+//    @JsonView(JsonViews.Normal.class)
     private String birthday;
+
+//    @JsonView(JsonViews.Normal.class)
     private String position;
+
+//    @JsonView(JsonViews.Normal.class)
     private String image;
+
+//    @JsonView(JsonViews.Normal.class)
     private String tell;
+
+//    @JsonView(JsonViews.Normal.class)
     private String email_per;
+
+//    @JsonView(JsonViews.Normal.class)
     private String facebook;
+
+//    @JsonView(JsonViews.Normal.class)
     private String line;
+
+//    @JsonView(JsonViews.Normal.class)
     private String twitter;
+
+//    @JsonView(JsonViews.Normal.class)
     private String instagram;
 
     @Id

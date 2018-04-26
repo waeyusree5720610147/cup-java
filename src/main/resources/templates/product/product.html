@@ -11,12 +11,110 @@
 <div class="container-fluid">
     <div class="row">
         <div th:replace="ingredient/sidebar :: sidebar"></div>
+        <div class="col-sm-3 col-md-2"></div>
         <div class="col-sm-9 col-md-10 mt-3">
             <h1>
-                P r o d u c t
+                Product
             </h1>
+            <a href="/admin/product/add">
+                <button type="button" class="btn button-add"> เพิ่ม </button>
+            </a>
+            <div class="alert alert-success alert-dismissible fade show" role="alert" th:if="${successMassage != null}">
+                <strong th:text="${successMassage}"></strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <table class="table table-striped mt-2">
+                <thead>
+                <tr class="bg-cupcode">
+                    <th scope="col">#</th>
+                    <th scope="col">AppName</th>
+                    <th scope="col">DetailShort</th>
+                    <th scope="col">NumberOfCustomer</th>
+                    <th scope="col">NumberOfMembers</th>
+                    <th scope="col">AmountOfContent</th>
+                    <!--<th scope="col" class="text-center">Image</th>-->
+                    <th class="text-center">*****</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="product : ${products}">
+                    <th scope="row" th:text="${product.id}"></th>
+                    <td th:text="${product.nameproduct}"></td>
+                    <td th:text="${product.detailshort}"></td>
+                    <td th:text="${product.numberofcustomer}"></td>
+                    <td th:text="${product.numberofmembers}"></td>
+                    <!--<td th:text="${product.amountofcontent}"></td>-->
+                    <td>
+                        <img class="rounded mx-auto d-block" width="50px" th:each="productImage : ${product.productImageset}" th:src="@{${productImage.url}}"/>
+                    </td>
+
+                    <td>
+                        <div class="text-center">
+                            <a th:href="@{/admin/addImage/} + ${product.id}" ><button type="button" class="btn btn-success">ใส่รูปภาพ</button></a>
+                            <button type="button" class="btn btn-primary view_detail" th:id="${product.id}">ดูรายละเอียด</button>
+                            <a th:href="@{/admin/product/edit/} + ${product.id}" ><button type="button" class="btn btn-warning">แก้ไข</button></a>
+                            <a th:href="@{/admin/product/delete/} + ${product.id}" onclick="return confirm('Are you sure?')"><button type="button" class="btn btn-danger" >ลบ</button></a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <!-- The Modal -->
+            <div class="modal fade" id="myModal" >
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header bg-cupcode">
+                            <h4 class="modal-title text-white">Detail Product</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                         <!--Modal body-->
+                        <div class="modal-body" >
+                                    <table>
+                                        <tr>
+                                            <td class="float-right font-weight-bold">App Name :&nbsp;</td>
+                                            <td><p class="card-text" id="fullname"></p></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="float-right font-weight-bold">NumberOfCustomer :&nbsp;</td>
+                                            <td><p class="card-text" id="nickname"></p></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="float-right font-weight-bold">NumberOfMembers :&nbsp;</td>
+                                            <td><p class="card-text" id="birthday"></p></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="float-right font-weight-bold">AmountOfContent:&nbsp;</td>
+                                            <td><p class="card-text" id="position"></p></td>
+                                        </tr>
+                                    </table>
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer bg-cupcode">
+                            <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
 </body>
+<script>
+    $(document).ready(function(){
+        $('.view_detail').click(function(){
+             <!--alert("5555555");-->
+            $('#myModal').modal('show');
+        });
+    });
+</script>
+
 </html>

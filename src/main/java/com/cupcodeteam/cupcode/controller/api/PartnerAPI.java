@@ -24,8 +24,8 @@ public class PartnerAPI {
     @RequestMapping("/get_partner")
     public List<Partner> getPartnerList(){
         List<Partner> partner = this.partnerRepository.findAll();
-        System.out.println(partner.get(0).getNameCompanyPartner());
-        System.out.print(partner.size());
+//        System.out.println(partner.get(0).getNameCompanyPartner());
+//        System.out.print(partner.size());
         return partner;
     }
 }

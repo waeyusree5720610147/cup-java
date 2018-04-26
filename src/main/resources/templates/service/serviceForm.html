@@ -11,8 +11,9 @@
 <div class="container-fluid">
     <div class="row">
         <div th:replace="ingredient/sidebar :: sidebar"></div>
+        <div class="col-sm-3 col-md-2"></div>
         <div class="col-sm-9 col-md-10 mt-3">
-            <h1 th:text="${keywords} ? 'A d d s e r v i c e' : 'E d i t s e r v i c e' "></h1>
+            <h1 class="title-form" th:text="${keywords} ? 'Add Service' : 'Edit Service' "></h1>
 
             <form th:object="${service}" th:action="@{/admin/service/save}" method="post" enctype="multipart/form-data">
                 <input type="hidden" th:field="*{id}">
